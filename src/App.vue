@@ -3,14 +3,14 @@
     .container(@mousemove='onMouseMove($event)')
       .progress-bar-container
         ProgressBar(
-          :progressBarWidth="240"
+          :progressBarWidth="260"
           :totalAmount="70"
           :currentAmount="this.progressBarCurrentAmount"
           :reverseProgressDirection="true"
         )
       router-view
       .custom-cursor(ref='inner-cursor')
-        .cursor-outer
+        .cursor-outer(v-bind:class="{onElement: mouseHoverElement.length > 0}")
         .cursor-inner
 </template>
 
@@ -29,6 +29,11 @@ export default {
       progressBarCurrentAmount: 7,
     }
   },
+  computed: {
+    mouseHoverElement() {
+      return this.$myStore.state.mouseHoverElement;
+    }
+  },
   methods: {
     progress() {
     },
@@ -41,7 +46,7 @@ export default {
       // requestAnimationFrame() used for smooth performance
       requestAnimationFrame(this.renderCursor);
     },
-  }
+  },
 }
 </script>
 
@@ -115,6 +120,11 @@ button {
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
+  transition: all 0.2s ease-in-out;
+
+  &.onElement {
+    opacity: 0;
+  }
 }
 
 .cursor-inner {
@@ -125,6 +135,10 @@ button {
   border-radius: 50%;
   z-index: 11000;
   background: $c-cursor-color;
+
+  &.onElement {
+    border-color: red;
+  }
 }
 
 </style>

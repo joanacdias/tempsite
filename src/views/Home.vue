@@ -1,5 +1,5 @@
 <template lang="pug">
-	#home(@mousemove='onMouseMove')
+	#home
 		.main
 			.grid: .page-header.grid__item.desk--three-fifths.push--desk--one-tenth.lap--one-whole
 				h1 Work Examples
@@ -7,10 +7,13 @@
 			.grid.grid--right: .img-container.grid__item.two-thirds.palm--one-whole
 				img#evl-analytics-img(src='../assets/work-examples/evl_analytics_mockup.svg')
 		.author(
-			@mouseover="mouseOnAuthor = true" 
-			@mouseleave="mouseOnAuthor = false"
+			@mouseenter="updateHoverElement('author')"
+			@mouseleave="updateHoverElement('')"
 		): p Joana Dias
-		.role: p UI/UX Designer &amp; Front-end Developer
+		.role(
+			@mouseenter="updateHoverElement('role')"
+			@mouseleave="updateHoverElement('')"
+		): p UI/UX Designer &amp; Front-end Developer
 </template>
 
 <script>
@@ -23,14 +26,13 @@ export default {
 	data() {
 		return {
 			squareIsActive: false,
-			mouseOnAuthor: false,
 		}
 	},
 	methods: {
-		onMouseMove() {
-			console.log('mouse over author: ' + this.mouseOnAuthor)
+		updateHoverElement(element) {
+			this.$myStore.commit('applyMouseHoverElement', element);
 		},
-	}
+	},
 }
 </script>
 

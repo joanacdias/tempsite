@@ -21,11 +21,11 @@
 	font-style: normal;
 	font-weight: 300;
 	font-size: $fs-subtitle--x-large;
-	line-height: $fs-subtitle--x-large;
+	line-height: $fs-subtitle--x-large + 4px;
 
 	@media(max-width: $m-screen-width--iphoneX) {
 		font-size: $fs-subtitle--large;
-		line-height: $fs-subtitle--large + 4px;
+		line-height: $fs-subtitle--large + 6px;
 	}
 }
 

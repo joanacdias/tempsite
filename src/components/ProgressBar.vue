@@ -21,9 +21,6 @@ export default {
         currentAmount: Number,
         reverseProgressDirection: Boolean,
     },
-    mounted() {
-        console.log(this.pixelProgressionAmount)
-    },
     computed: {
         cssVars () {
             return {
