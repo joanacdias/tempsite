@@ -1,0 +1,16 @@
+@mixin button-primary {
+	border: none;
+  background-color: $c-black;
+  color: white;
+  font-family: 'FreightSans-Pro', sans-serif;
+  font-size: 18px;
+	margin-left: 24px;
+	width: 120px;
+	padding: 8px 0;
+	text-align: center;
+  outline: none;
+
+  @media (max-width: $break-mobile) {
+    margin-top: 30px;
+	}
+}
