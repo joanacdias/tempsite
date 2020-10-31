@@ -10,8 +10,10 @@
         )
       router-view
       .custom-cursor(ref='inner-cursor')
-        .cursor-outer(v-bind:class="{onElement: mouseHoverElement.length > 0}")
-        .cursor-inner
+        .cursor-outer(v-bind:class="{'on-element': mouseHoverElement.length > 0}")
+        .cursor-inner(v-bind:class="{'on-element': mouseHoverElement.length > 0}")
+        //- .cursor-label(v-bind:class="{'cursor-label-visible': mouseHoverElement.length > 0}")
+        //-   p.cursor-label-text(v-bind:class="{'cursor-label-visible': mouseHoverElement.length > 0}") Go to LinkedIn profile
 </template>
 
 <script>
@@ -115,14 +117,14 @@ button {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid $c-cursor-color;
+  // border: 1px solid #ffffff3a;
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.4s ease-in-out;
 
-  &.onElement {
+  &.on-element {
     opacity: 0;
   }
 }
@@ -134,11 +136,54 @@ button {
   top: -2.5px;
   border-radius: 50%;
   z-index: 11000;
-  background: $c-cursor-color;
+  background: #ffffff;  
+  // background: $c-white;
+  transition: all 0.4s ease-in-out;
+  box-shadow:
+    0 0 15px 8px rgba(255, 255, 255, 0.865),  /* inner white */
+    0 0 25px 16px rgba(255, 0, 255, 0.646), /* middle magenta */
+    0 0 35px 20px rgb(0, 255, 255); /* outer cyan */
 
-  &.onElement {
-    border-color: red;
+  &.on-element {
+		@include animation-fadeInOutHover;
+    width: 4px;
+    height: 4px;
+    // background: $c-white;
+    box-shadow:
+        0 0 20px 5px transparent,  /* inner white */
+        0 0 40px 20px transparent, /* middle magenta */
+        0 0 16px 8px $c-accent--purple; /* outer cyan */
   }
 }
+
+// .cursor-label {
+//   width: 0;
+//   height: 32px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   position: absolute;
+//   background-color: $c-cursor-color;
+//   transition: all 0.4s ease-in-out;
+//   left: 15px;
+//   top: -12px;
+
+//   &.cursor-label-visible {
+//     width: 180px;
+//   }
+// }
+
+// .cursor-label-text {
+//   margin: 2px 6px;
+//   opacity: 0;
+//   white-space: nowrap;
+//   text-align: center;
+//   transition: opacity 0.2s ease-in-out 0.4s;
+//   font-weight: 500;
+
+//   &.cursor-label-visible {
+//     opacity: 1;
+//   }
+// }
 
 </style>
