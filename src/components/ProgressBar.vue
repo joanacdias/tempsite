@@ -4,7 +4,6 @@
         .progress-bar--front
 </template>
 <script>
-// import from './components/.vue'
 
 export default {
     name: 'progress-bar',

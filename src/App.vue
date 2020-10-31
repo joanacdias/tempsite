@@ -91,6 +91,7 @@ html, body {
 
 h1 { @include title }
 h2 { @include subtitle }
+h3 { @include heading }
 p  { @include body }
 
 button {
@@ -152,7 +153,7 @@ button {
     box-shadow:
         0 0 20px 5px transparent,  /* inner white */
         0 0 40px 20px transparent, /* middle magenta */
-        0 0 16px 8px $c-accent--purple; /* outer cyan */
+        0 0 16px 8px $c-white; /* outer cyan */
   }
 }
 

@@ -6,6 +6,7 @@
 				h2 Temporary showcase whilst new site is under construction
 			.grid.grid--right: .img-container.grid__item.two-thirds.palm--one-whole
 				img#evl-analytics-img(src='../assets/work-examples/evl_analytics_mockup.svg')
+		//- enter and leave listeners used to later on create dynamic,animated hover states for custom cursor (experimenting with gamification ideas). Element type stored in global state so custom cursor in App.vue can listen out and render desired actions depending on the element it is hovering over.
 		.author(
 			@mouseenter="updateHoverElement('author')"
 			@mouseleave="updateHoverElement('')"
@@ -60,10 +61,10 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-}
 
-h1 {
-	margin: 0;
+	& h1 {
+		margin-bottom: 24px;
+	}
 }
 
 .page-header {

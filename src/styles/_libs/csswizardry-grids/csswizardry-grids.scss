@@ -120,8 +120,8 @@ $use-markup-fix: true !default;
   * your classes (e.g. `.palm--one-half`), the second value is the media query
   * that the breakpoint fires at.
   */
-$breakpoints: ('palm''(max-width: 480px)',
-    'lap''(min-width: 481px) and (max-width: 1023px)',
+$breakpoints: ('palm''(max-width: 500px)',
+    'lap''(min-width: 501px) and (max-width: 1023px)',
     'portable''(max-width: 1023px)',
     'desk''(min-width: 1024px)'
 ) !default;
