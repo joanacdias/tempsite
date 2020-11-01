@@ -11,6 +11,13 @@
 			@mouseenter="updateHoverElement('author')"
 			@mouseleave="updateHoverElement('')"
 		): p Joana Dias
+		.social-links
+			a(href="https://www.linkedin.com/in/joanacdias/" target="_blank" @mouseenter="updateHoverElement('linkedinLink')" @mouseleave="updateHoverElement('')")
+				font-awesome-icon(:icon="['fab', 'linkedin-in']")
+			a(href="https://www.instagram.com/joanacatdias/" target="_blank" @mouseenter="updateHoverElement('igLink')" @mouseleave="updateHoverElement('')")
+				font-awesome-icon(:icon="['fab', 'instagram']")
+			a(href="mailto:jocatarinadias@gmail.com" @mouseenter="updateHoverElement('emailLink')" @mouseleave="updateHoverElement('')") 
+				font-awesome-icon(:icon="['far', 'envelope']")
 		.role(
 			@mouseenter="updateHoverElement('role')"
 			@mouseleave="updateHoverElement('')"
@@ -18,8 +25,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-
 export default {
 	name: 'home',
 	components: {
@@ -52,6 +57,7 @@ export default {
 #home {
 	height: calc(100vh - 44px);
 	min-height: 100vh;
+	min-width: 100vw;
 	padding: $m-page-padding;
 	overflow: hidden;
 }
@@ -106,17 +112,17 @@ export default {
 		right: -$gutter - 12px;
 	}
 
-	@media (min-width: $break-lap) {
+	@media (min-width: $break-lap + 1) {
 		max-width: unset;
 		width: 800px;
 		bottom: $gutter * 2;
-		right: -$gutter - 20px;
+		right: -136px;
 	}
 }
 
 .author {
 	position: absolute;
-	top: 34px;
+	top: $m-page-padding;
 	left: -17px;
 	transform: rotate(-90deg);
 
@@ -126,7 +132,7 @@ export default {
 
 	@media (max-width: $break-palm) {
 		top: unset;
-		bottom: 30px;
+		bottom: 44px;
 		left: -16px;
 	}
 }
@@ -134,7 +140,7 @@ export default {
 .role {
 	position: absolute;
 	left: 17px;
-	bottom: 0;
+	bottom: 12px;
 
 	&:hover {
 		@include animation-fadeInOutHover;
@@ -142,8 +148,34 @@ export default {
 
 	@media (max-width: $break-palm) {
 		transform: rotate(-90deg);
-		bottom: 126px;
+		bottom: 140px;
 		left: -94px;
+	}
+}
+
+.social-links {
+	position: absolute;
+    left: 18px;
+	bottom: 34px;
+	
+	a {
+		color: $c-default-text-color;
+		margin-right: 8px;
+		transition: all ease-in-out 0.2s;
+		font-size: 18px;
+
+		&:hover {
+			@include animation-fadeInOutHover;
+			color: $c-accent--purple;
+			cursor: none;
+		}
+	}
+
+	@media (max-width: $break-palm) {
+		transform: rotate(-90deg);
+		font-size: 16px;
+		bottom: 40px;
+		left: 40px;
 	}
 }
 

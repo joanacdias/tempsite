@@ -50,8 +50,7 @@ export default {
     .progress-bar--back {
         width: 100%;
         height: 2px;
-        background-color: $c-white;
-        opacity: 0.2;
+        background-color: #3D4446;
     }
 
     .progress-bar--front {

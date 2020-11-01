@@ -1,5 +1,6 @@
 <template lang="pug">
-	.tag(
+	//- TO DO: add link element if url gets passed as a prop
+	.tag.shake-slow(
 		@mouseenter="updateHoverElement(`${label} tag`)"
 		@mouseleave="updateHoverElement('')"
 	)
@@ -11,6 +12,7 @@ export default {
 	name: 'tag',
 	props: {
 		label: String,
+		link: String,
 	},
 	methods: {
 		updateHoverElement(element) {
@@ -24,6 +26,8 @@ export default {
 	@import '../styles/fonts';
 	@import '../styles/variables';
 	@import '../styles/_mixins/index';
+	
+	@import '../styles/_libs/css-shake/csshake-slow.scss';
 
 	.tag {
 		background-color: $c-accent--purple;

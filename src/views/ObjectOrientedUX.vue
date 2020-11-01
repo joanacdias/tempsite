@@ -1,5 +1,5 @@
 <template lang="pug">
-	#object-oriented-ux
+	#object-oriented-ux(ref="ooux-container")
 		.main
 			.grid
 				.page-header.grid__item.one-whole.push--desk--one-tenth.lap--one-whole
@@ -33,6 +33,12 @@ export default {
 			]
 		}
 	},
+	watch:{
+		'$route'()  {
+			this.$refs['ooux-container'].scrollTop = 0;
+			window.scrollTo(0,0);
+		}
+	},
 }
 </script>
 
@@ -42,9 +48,12 @@ export default {
 	@import '../styles/_mixins/index';
 
 	#object-oriented-ux {
+		height: 100vh;
 		min-height: 100vh;
+		min-width: 100vw;
 		padding: 44px 44px 0 44px;
-		overflow: hidden;
+		overflow: scroll;
+		position: absolute;
 	}
 
 	.main {

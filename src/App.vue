@@ -3,51 +3,59 @@
     .container(@mousemove='onMouseMove($event)')
       .progress-bar-container
         ProgressBar(
-          :progressBarWidth="260"
-          :totalAmount="70"
+          :progressBarWidth="this.progressBarWidth"
+          :totalAmount="this.progressBarTotalAmount"
           :currentAmount="this.progressBarCurrentAmount"
           :reverseProgressDirection="true"
         )
-      router-view
-      .custom-cursor(ref='inner-cursor')
-        .cursor-outer(v-bind:class="{'on-element': mouseHoverElement.length > 0}")
-        .cursor-inner(v-bind:class="{'on-element': mouseHoverElement.length > 0}")
-        //- .cursor-label(v-bind:class="{'cursor-label-visible': mouseHoverElement.length > 0}")
-        //-   p.cursor-label-text(v-bind:class="{'cursor-label-visible': mouseHoverElement.length > 0}") Go to LinkedIn profile
+      HorizontalSlider
+        Home(slot="slide1")
+        ObjectOrientedUX(slot="slide2")
+    CustomCursor(:clientX="this.clientX" :clientY="this.clientY")
 </template>
 
 <script>
+import Splide from '@splidejs/splide';
+import Home from './views/Home.vue'
+import ObjectOrientedUX from './views/ObjectOrientedUX.vue'
 import ProgressBar from './components/ProgressBar.vue'
+import CustomCursor from './components/CustomCursor.vue'
+import HorizontalSlider from './components/HorizontalSlider.vue'
+import Icon from 'vue-awesome/components/Icon'
 
 export default {
   name: 'App',
   components: {
+    Splide,
+    CustomCursor,
+    Home,
+    ObjectOrientedUX,
     ProgressBar,
+    HorizontalSlider,
+    'v-icon': Icon,
   },
   data() {
 		return {
       clientX: 0,
       clientY: 0,
-      progressBarCurrentAmount: 7,
-    }
-  },
-  computed: {
-    mouseHoverElement() {
-      return this.$myStore.state.mouseHoverElement;
+      progressBarWidth: 260,
+      progressBarTotalAmount: 7,
+      progressBarCurrentAmount: 1,
     }
   },
   methods: {
     progress() {
     },
-    renderCursor() {
-      this.$refs['inner-cursor'].style.transform = `translate(${this.clientX}px, ${this.clientY}px)`;
-    },
     onMouseMove(event) {
       this.clientX = event.clientX;
       this.clientY = event.clientY;
-      // requestAnimationFrame() used for smooth performance
-      requestAnimationFrame(this.renderCursor);
     },
+  },
+  watch:{
+    '$route'(to)  {
+      if (to.hash === '#ooux') { this.progressBarCurrentAmount = 2 } 
+      else if (to.hash === '#home') { this.progressBarCurrentAmount = 1 }
+    }
   },
 }
 </script>
@@ -60,6 +68,11 @@ export default {
 // Libraries
 @import './styles/_libs/modularized-normalize-scss/_normalize.scss';
 @import './styles/_libs/csswizardry-grids/csswizardry-grids.scss';
+@import './styles/_libs/splide/splide-core.scss';
+
+.btn {
+  color: black;
+}
 
 // Global styles
 *,
@@ -71,7 +84,6 @@ export default {
 html, body {
   background-color: $c-black;
   height: 100%;
-  cursor: url('./assets/logo.png'), auto;	
 }
 
 #app {
@@ -82,13 +94,6 @@ html, body {
   margin-top: 0px;
 }
 
-.container {
-  min-height: 100vh;
-  min-width: 100vw;
-  background-color: $c-background-color;
-  cursor: none;
-}
-
 h1 { @include title }
 h2 { @include subtitle }
 h3 { @include heading }
@@ -96,95 +101,24 @@ p  { @include body }
 
 button {
   cursor: none;
+
   :hover {
     cursor: none;
   }
 }
 
+.container {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color: $c-background-color;
+  cursor: none;
+}
+
 .progress-bar-container {
-  position: absolute;
+  position: fixed;
   top: $m-page-padding;
   right: 0;
+  z-index: 1;
 }
-
-.custom-cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  pointer-events: none;
-}
-
-.cursor-outer {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  // border: 1px solid #ffffff3a;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  left: 50%;
-  top: 50%;
-  transition: all 0.4s ease-in-out;
-
-  &.on-element {
-    opacity: 0;
-  }
-}
-
-.cursor-inner {
-  width: 5px;
-  height: 5px;
-  left: -2.5px;
-  top: -2.5px;
-  border-radius: 50%;
-  z-index: 11000;
-  background: #ffffff;  
-  // background: $c-white;
-  transition: all 0.4s ease-in-out;
-  box-shadow:
-    0 0 15px 8px rgba(255, 255, 255, 0.865),  /* inner white */
-    0 0 25px 16px rgba(255, 0, 255, 0.646), /* middle magenta */
-    0 0 35px 20px rgb(0, 255, 255); /* outer cyan */
-
-  &.on-element {
-		@include animation-fadeInOutHover;
-    width: 4px;
-    height: 4px;
-    // background: $c-white;
-    box-shadow:
-        0 0 20px 5px transparent,  /* inner white */
-        0 0 40px 20px transparent, /* middle magenta */
-        0 0 16px 8px $c-white; /* outer cyan */
-  }
-}
-
-// .cursor-label {
-//   width: 0;
-//   height: 32px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   position: absolute;
-//   background-color: $c-cursor-color;
-//   transition: all 0.4s ease-in-out;
-//   left: 15px;
-//   top: -12px;
-
-//   &.cursor-label-visible {
-//     width: 180px;
-//   }
-// }
-
-// .cursor-label-text {
-//   margin: 2px 6px;
-//   opacity: 0;
-//   white-space: nowrap;
-//   text-align: center;
-//   transition: opacity 0.2s ease-in-out 0.4s;
-//   font-weight: 500;
-
-//   &.cursor-label-visible {
-//     opacity: 1;
-//   }
-// }
-
 </style>
