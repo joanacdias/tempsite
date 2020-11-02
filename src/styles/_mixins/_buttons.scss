@@ -1,0 +1,11 @@
+@mixin btn--primary {
+  @include body;
+  border-radius: 4px;
+  border: 1px solid $c-white;
+  background-color: transparent;
+  color: white;
+  font-family: 'FreightSans-Pro', sans-serif;
+	padding: 6px 14px;
+	text-align: center;
+  outline: none;
+}

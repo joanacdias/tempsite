@@ -1,0 +1,37 @@
+// Measurements (m-)
+$gutter: 24px;
+
+$m-screen-width--iphone5: 320px;
+$m-screen-width--iphone8Plus: 414px;
+$m-screen-width--iphoneX: 375px;
+
+$m-nav-height: 60px;
+$m-mobile-nav-height: 48px;
+$m-page-padding: 44px;
+
+// Breakpoints
+$break-palm: 500px;
+$break-mobile: 960px;
+$break-lap: 1023px;
+
+// Colours (c-)
+$c-black: #000000;
+$c-white: #ffffff;
+$c-grey: #D8D8D8;
+	$c-grey--light: #ECECEC;
+	$c-grey--x-light: #F4F4F4;
+$c-accent--purple: #6F3DFF;
+
+// Colour uses (c-)
+$c-background-color: $c-black;
+$c-default-text-color: $c-white;
+$c-cursor-color: $c-accent--purple;
+
+// Font families
+$ff-headers: 'Montserrat', sans-serif;
+$ff-body: 'Montserrat', sans-serif;
+
+// Font weights
+$fw-light: 200;
+$fw-normal: 400;
+$fw-heavy: 700;
