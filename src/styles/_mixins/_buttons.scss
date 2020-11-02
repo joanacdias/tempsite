@@ -1,16 +1,11 @@
-@mixin button-primary {
-	border: none;
-  background-color: $c-black;
+@mixin btn--primary {
+  @include body;
+  border-radius: 4px;
+  border: 1px solid $c-white;
+  background-color: transparent;
   color: white;
   font-family: 'FreightSans-Pro', sans-serif;
-  font-size: 18px;
-	margin-left: 24px;
-	width: 120px;
-	padding: 8px 0;
+	padding: 6px 14px;
 	text-align: center;
   outline: none;
-
-  @media (max-width: $break-mobile) {
-    margin-top: 30px;
-	}
 }

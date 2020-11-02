@@ -18,7 +18,7 @@
 import Tag from '../components/Tag.vue'
 
 export default {
-	name: '',
+	name: 'ooux',
 	components: {
 		Tag,
 	},
@@ -52,7 +52,8 @@ export default {
 		min-height: 100vh;
 		min-width: 100vw;
 		padding: 44px 44px 0 44px;
-		overflow: scroll;
+		overflow-x: hidden;
+		overflow-y: scroll;
 		position: absolute;
 	}
 

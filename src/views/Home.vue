@@ -4,6 +4,13 @@
 			.grid: .page-header.grid__item.desk--three-fifths.push--desk--one-tenth.lap--one-whole
 				h1 Work Examples
 				h2 Temporary showcase whilst new site is under construction
+				a.btn--primary#cv-download-btn.shake-slow(
+					download="CV Joana Dias UX UI Designer and Front End Developer.pdf"
+					href="/files/cv.pdf"
+					target="_blank"
+					@mouseenter="updateHoverElement('cdDownloadBtn')"
+					@mouseleave="updateHoverElement('')"
+				) Download CV
 			.grid.grid--right: .img-container.grid__item.two-thirds.palm--one-whole
 				img#evl-analytics-img(src='../assets/work-examples/evl_analytics_mockup.svg')
 		//- enter and leave listeners used to later on create dynamic,animated hover states for custom cursor (experimenting with gamification ideas). Element type stored in global state so custom cursor in App.vue can listen out and render desired actions depending on the element it is hovering over.
@@ -47,6 +54,8 @@ export default {
 @import '../styles/variables';
 @import '../styles/_mixins/index';
 
+@import '../styles/_libs/css-shake/csshake-slow.scss';
+
 // Global styles
 *,
 *::before,
@@ -73,6 +82,15 @@ export default {
 	}
 }
 
+.btn--primary {
+	@include btn--primary;
+	text-decoration: none;
+
+	&#cv-download-btn {
+		margin-top: 54px;
+	}
+}
+
 .page-header {
 	text-align: left;
 	max-width: 740px;
@@ -93,7 +111,7 @@ export default {
 .img-container {
 	text-align: right;
 	position: relative;
-	bottom: -$m-page-padding;
+	bottom: -10px;
 }
 
 #evl-analytics-img {

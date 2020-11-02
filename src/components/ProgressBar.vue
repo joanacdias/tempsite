@@ -23,7 +23,6 @@ export default {
     computed: {
         cssVars () {
             return {
-                /* variables you want to pass to css */
                 '--flex-direction': this.reverseProgressDirection ? 'row-reverse' : 'row',
                 '--default-progress-bar-width': `${this.defaultProgressBarWidth}px`,
                 '--pixel-progression-amount': `${this.pixelProgressionAmount}px`,

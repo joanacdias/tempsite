@@ -11,6 +11,10 @@
       HorizontalSlider
         Home(slot="slide1")
         ObjectOrientedUX(slot="slide2")
+        LowFid(slot="slide3")
+        MidFid(slot="slide4")
+        MidFidMoreExamples(slot="slide5")
+        FrontEnd(slot="slide6")
     CustomCursor(:clientX="this.clientX" :clientY="this.clientY")
 </template>
 
@@ -18,6 +22,10 @@
 import Splide from '@splidejs/splide';
 import Home from './views/Home.vue'
 import ObjectOrientedUX from './views/ObjectOrientedUX.vue'
+import LowFid from './views/LowFid.vue'
+import MidFid from './views/MidFid.vue'
+import MidFidMoreExamples from './views/MidFidMoreExamples.vue'
+import FrontEnd from './views/FrontEnd.vue'
 import ProgressBar from './components/ProgressBar.vue'
 import CustomCursor from './components/CustomCursor.vue'
 import HorizontalSlider from './components/HorizontalSlider.vue'
@@ -30,6 +38,10 @@ export default {
     CustomCursor,
     Home,
     ObjectOrientedUX,
+    LowFid,
+    MidFid,
+    MidFidMoreExamples,
+    FrontEnd,
     ProgressBar,
     HorizontalSlider,
     'v-icon': Icon,
@@ -50,11 +62,21 @@ export default {
       this.clientX = event.clientX;
       this.clientY = event.clientY;
     },
+    updateProgressBar(hash) {
+      if (hash === '#home') { this.progressBarCurrentAmount = 1 }
+      if (hash === '#ooux') { this.progressBarCurrentAmount = 2 } 
+      if (hash === '#low-fid') { this.progressBarCurrentAmount = 3 }
+      if (hash === '#mid-fid') { this.progressBarCurrentAmount = 4 }
+      if (hash === '#mid-fid-more') { this.progressBarCurrentAmount = 5 }
+      if (hash === '#front-end') { this.progressBarCurrentAmount = 6 }
+    }
+  },
+  mounted() {
+    this.updateProgressBar(this.$route.hash)
   },
   watch:{
     '$route'(to)  {
-      if (to.hash === '#ooux') { this.progressBarCurrentAmount = 2 } 
-      else if (to.hash === '#home') { this.progressBarCurrentAmount = 1 }
+      this.updateProgressBar(to.hash)
     }
   },
 }
@@ -69,10 +91,6 @@ export default {
 @import './styles/_libs/modularized-normalize-scss/_normalize.scss';
 @import './styles/_libs/csswizardry-grids/csswizardry-grids.scss';
 @import './styles/_libs/splide/splide-core.scss';
-
-.btn {
-  color: black;
-}
 
 // Global styles
 *,

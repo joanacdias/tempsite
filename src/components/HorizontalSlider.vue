@@ -13,6 +13,10 @@
             //- TO DO: add a v-for to render list items and url hash dynamically from props.
             li(data-splide-hash="home").splide__slide: slot(name="slide1")
             li(data-splide-hash="ooux").splide__slide: slot(name="slide2")
+            li(data-splide-hash="low-fid").splide__slide: slot(name="slide3")
+            li(data-splide-hash="mid-fid").splide__slide: slot(name="slide4")
+            li(data-splide-hash="mid-fid-more").splide__slide: slot(name="slide5")
+            li(data-splide-hash="front-end").splide__slide: slot(name="slide6")
 </template>
 <script>
 import Splide from '@splidejs/splide';
