@@ -1,13 +1,16 @@
 <template lang="pug">
     .breadcrumbs
-        .breadcrumb(v-for="crumb in breadcrumbs" :key="crumb.label")
+        .breadcrumb(v-for="(crumb, index) in breadcrumbs" :key="crumb.label")
             a(
                 :href="crumb.link"
                 :class="[activeRoute === crumb.link ? 'isActive' : 'isNotActive']"
                 @mouseenter="updateHoverElement('linkedinLink')"
                 @mouseleave="updateHoverElement('')"
             ) {{ crumb.label }}
-            v-icon(name="chevron-right").chevron
+            v-icon(
+                name="chevron-right"
+                v-if="index != breadcrumbs.length - 1"
+            ).chevron
 </template>
 <script>
 import Icon from 'vue-awesome/components/Icon'
