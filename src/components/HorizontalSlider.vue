@@ -17,6 +17,7 @@
             li(data-splide-hash="mid-fid").splide__slide: slot(name="slide4")
             li(data-splide-hash="mid-fid-more").splide__slide: slot(name="slide5")
             li(data-splide-hash="front-end").splide__slide: slot(name="slide6")
+            li(data-splide-hash="end").splide__slide: slot(name="slide7")
 </template>
 <script>
 import Splide from '@splidejs/splide';

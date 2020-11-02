@@ -47,3 +47,24 @@
 	font-size: 14px;
 	margin: 0;
 }
+
+@mixin link {
+	font-family: $ff-body;
+	font-style: normal;
+	font-weight: 300;
+	font-size: 14px;
+	margin: 0;
+	text-decoration: none;
+	color: $c-default-text-color;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		@include animation-fadeInOutHover;
+		// Chrome and IE don't support font-weight animations so font-weight transitions look blocky. Hack below gives a smooth, font-weight transition effect.
+		text-shadow:
+			-0.2px -0.2px 0 $c-default-text-color,
+			0.2px -0.2px 0 $c-default-text-color,
+			-0.2px 0.2px 0 $c-default-text-color,
+			0.2px 0.2px 0 $c-default-text-color;
+	}
+}

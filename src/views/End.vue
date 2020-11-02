@@ -1,9 +1,19 @@
 <template lang="pug">
-	#home
+	#end
 		.main
-			.grid: .page-header.grid__item.desk--three-fifths.push--desk--one-tenth.lap--one-whole
-				h1 Work Examples
-				h2 Temporary showcase whilst new site is under construction
+			.grid: .page-header.grid__item.one-whole
+				h1 New site coming soon
+				h2 In the meantime, feel free to get in touch with any questions.
+				.contact-details
+					a(
+						href="mailto:jocatarinadias@gmail.com"
+						@mouseenter="updateHoverElement('email')"
+						@mouseleave="updateHoverElement('')"
+					) jocatarinadias@gmail.com
+					p(
+						@mouseenter="updateHoverElement('number')"
+						@mouseleave="updateHoverElement('')"
+					) +44 74506 78525
 				a.btn--primary#cv-download-btn.shake-slow(
 					download="CV Joana Dias UX UI Designer and Front End Developer.pdf"
 					href="/files/cv.pdf"
@@ -11,9 +21,6 @@
 					@mouseenter="updateHoverElement('cdDownloadBtn')"
 					@mouseleave="updateHoverElement('')"
 				) Download CV
-			.grid.grid--right: .img-container.grid__item.two-thirds.palm--one-whole
-				img#evl-analytics-img(src='../assets/work-examples/evl_analytics_mockup.svg')
-		//- enter and leave listeners used to later on create dynamic,animated hover states for custom cursor (experimenting with gamification ideas). Element type stored in global state so custom cursor in App.vue can listen out and render desired actions depending on the element it is hovering over.
 		.author(
 			@mouseenter="updateHoverElement('author')"
 			@mouseleave="updateHoverElement('')"
@@ -33,7 +40,7 @@
 
 <script>
 export default {
-	name: 'home',
+	name: 'end',
 	components: {
 	},
 	data() {
@@ -63,7 +70,7 @@ export default {
 	box-sizing: border-box;
 }
 
-#home {
+#end {
 	height: calc(100vh - 44px);
 	min-height: 100vh;
 	min-width: 100vw;
@@ -75,11 +82,8 @@ export default {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
-
-	& h1 {
-		margin-bottom: 24px;
-	}
+	justify-content: center;
+	text-align: center;
 }
 
 .btn--primary {
@@ -89,26 +93,26 @@ export default {
 	&#cv-download-btn {
 		margin-top: 54px;
 
-		@media (max-width: $break-palm) {
-			margin: 26px auto 18px;
+		&:hover {
+			cursor: none;
 		}
 	}
 }
 
 .page-header {
-	text-align: left;
-	max-width: 740px;
-
-	@media (max-width: $break-palm) {
-		margin-top: 40px;
+	text-align: center;
+	
+	& h1 {
+		margin-bottom: 24px;
+		font-size: 58px;
+		line-height: 58px;
 	}
 
-	@media (min-width: $break-palm + 1) and (max-width: $break-mobile) {
-		margin-top: 60px;
-	}
-
-	@media (min-width: $break-mobile + 1) {
-		margin-top: 80px;
+	& h2 {
+		margin: auto;
+		font-size: 24px;
+		line-height: 30px;
+		max-width: 500px;
 	}
 }
 
@@ -198,6 +202,23 @@ export default {
 		font-size: 16px;
 		bottom: 40px;
 		left: 40px;
+	}
+}
+
+.contact-details {
+	margin-top: 24px;
+
+	p {
+		font-weight: 500;
+	}
+
+	a {
+		color: $c-white;
+		text-decoration: none;
+
+		&:hover {
+			cursor: none;
+		}
 	}
 }
 
