@@ -1,5 +1,5 @@
 <template lang="pug">
-  //- TO DO: Cross-browser and device compatibility tests
+  //- TO DO: Cross-browser and device compatibility tests and speed optimization.
   #app
     .container(@mousemove='onMouseMove($event)')
       .breadcrumbs-container: BreadCrumbs(
